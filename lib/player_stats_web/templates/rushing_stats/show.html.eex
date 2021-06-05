@@ -1,0 +1,86 @@
+<h1>Show Rushing stats</h1>
+
+<ul>
+
+  <li>
+    <strong>Player:</strong>
+    <%= @rushing_stats.player %>
+  </li>
+
+  <li>
+    <strong>Team:</strong>
+    <%= @rushing_stats.team %>
+  </li>
+
+  <li>
+    <strong>Position:</strong>
+    <%= @rushing_stats.position %>
+  </li>
+
+  <li>
+    <strong>Attempts:</strong>
+    <%= @rushing_stats.attempts %>
+  </li>
+
+  <li>
+    <strong>Attempts game:</strong>
+    <%= @rushing_stats.attempts_game %>
+  </li>
+
+  <li>
+    <strong>Yards:</strong>
+    <%= @rushing_stats.yards %>
+  </li>
+
+  <li>
+    <strong>Yards avg:</strong>
+    <%= @rushing_stats.yards_avg %>
+  </li>
+
+  <li>
+    <strong>Yards game:</strong>
+    <%= @rushing_stats.yards_game %>
+  </li>
+
+  <li>
+    <strong>Touchdowns:</strong>
+    <%= @rushing_stats.touchdowns %>
+  </li>
+
+  <li>
+    <strong>Longest:</strong>
+    <%= @rushing_stats.longest %>
+  </li>
+
+  <li>
+    <strong>Longest td:</strong>
+    <%= @rushing_stats.longest_td %>
+  </li>
+
+  <li>
+    <strong>First downs:</strong>
+    <%= @rushing_stats.first_downs %>
+  </li>
+
+  <li>
+    <strong>First down pc:</strong>
+    <%= @rushing_stats.first_down_pc %>
+  </li>
+
+  <li>
+    <strong>Yards 20:</strong>
+    <%= @rushing_stats.yards_20 %>
+  </li>
+
+  <li>
+    <strong>Yards 40:</strong>
+    <%= @rushing_stats.yards_40 %>
+  </li>
+
+  <li>
+    <strong>Fumbles:</strong>
+    <%= @rushing_stats.fumbles %>
+  </li>
+
+</ul>
+

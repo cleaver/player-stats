@@ -17,6 +17,9 @@ defmodule PlayerStatsWeb.Router do
   scope "/", PlayerStatsWeb do
     pipe_through :browser
 
+    get "/rushing_stats", RushingStatsController, :index
+    get "/rushing_stats/:id", RushingStatsController, :show
+
     live "/", PageLive, :index
   end
 
