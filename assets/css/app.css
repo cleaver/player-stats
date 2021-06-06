@@ -1,0 +1,24 @@
+/* This file is for your main application css. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app-body {
+  @apply bg-white dark:bg-gray-600;
+}
+
+.app-table {
+  @apply rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200;
+  th,
+  td {
+    @apply px-4 py-3;
+  }
+}
+
+.app-table__head th {
+  @apply top-0 sticky text-center border-b-2 border-gray-300 bg-gray-200 dark:bg-gray-800;
+}
+
+.app-table__body-row tr {
+  @apply bg-gray-100 border-b border-gray-200 dark:bg-gray-700 dark:border-gray-500;
+}

@@ -1,48 +1,43 @@
 <h1>Listing Rushing stats</h1>
 
-<table>
-  <caption>Rushing stats</caption>
-  <thead>
+<table class="app-table">
+  <thead class="app-table__head">
     <tr>
-      <th>Player</th>
-      <th>Team</th>
-      <th>Position</th>
-      <th>Attempts</th>
-      <th>Attempts game</th>
-      <th>Yards</th>
-      <th>Yards avg</th>
-      <th>Yards game</th>
-      <th>Touchdowns</th>
-      <th>Longest</th>
-      <th>Longest td</th>
-      <th>First downs</th>
-      <th>First down pc</th>
-      <th>Yards 20</th>
-      <th>Yards 40</th>
-      <th>Fumbles</th>
-
-      <th></th>
+      <th scope="col">Player</th>
+      <th scope="col">Team</th>
+      <th scope="col">Pos</th>
+      <th scope="col">Att</th>
+      <th scope="col">Att/G</th>
+      <th scope="col">Yds</th>
+      <th scope="col">Avg</th>
+      <th scope="col">Yds/G</th>
+      <th scope="col">TD</th>
+      <th scope="col">Lng</th>
+      <th scope="col">1st</th>
+      <th scope="col">1st%</th>
+      <th scope="col">20+</th>
+      <th scope="col">40+</th>
+      <th scope="col">Fum</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="app-table__body-row">
 <%= for rushing_stats <- @rushing_stats do %>
     <tr>
       <td><%= rushing_stats.player %></td>
       <td><%= rushing_stats.team %></td>
       <td><%= rushing_stats.position %></td>
-      <td><%= rushing_stats.attempts %></td>
-      <td><%= rushing_stats.attempts_game %></td>
-      <td><%= rushing_stats.yards %></td>
-      <td><%= rushing_stats.yards_avg %></td>
-      <td><%= rushing_stats.yards_game %></td>
-      <td><%= rushing_stats.touchdowns %></td>
-      <td><%= rushing_stats.longest %></td>
-      <td><%= rushing_stats.longest_td %></td>
-      <td><%= rushing_stats.first_downs %></td>
-      <td><%= rushing_stats.first_down_pc %></td>
-      <td><%= rushing_stats.yards_20 %></td>
-      <td><%= rushing_stats.yards_40 %></td>
-      <td><%= rushing_stats.fumbles %></td>
+      <td class="text-right"><%= rushing_stats.attempts %></td>
+      <td class="text-right"><%= rushing_stats.attempts_game %></td>
+      <td class="text-right"><%= rushing_stats.yards %></td>
+      <td class="text-right"><%= rushing_stats.yards_avg %></td>
+      <td class="text-right"><%= rushing_stats.yards_game %></td>
+      <td class="text-right"><%= rushing_stats.touchdowns %></td>
+      <td class="text-right"><%= rushing_stats.longest %>&nbsp;<strong><%= raw if rushing_stats.longest_td, do: "T", else: "&nbsp;&nbsp;" %></strong></td>
+      <td class="text-right"><%= rushing_stats.first_downs %></td>
+      <td class="text-right"><%= rushing_stats.first_down_pc %></td>
+      <td class="text-right"><%= rushing_stats.yards_20 %></td>
+      <td class="text-right"><%= rushing_stats.yards_40 %></td>
+      <td class="text-right"><%= rushing_stats.fumbles %></td>
     </tr>
 <% end %>
   </tbody>
