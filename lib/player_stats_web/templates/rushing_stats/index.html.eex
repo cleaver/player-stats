@@ -8,11 +8,11 @@
       <th scope="col">Pos</th>
       <th scope="col">Att</th>
       <th scope="col">Att/G</th>
-      <th scope="col">Yds</th>
+      <th scope="col"><%= sort_link @conn, "Yds", :yards, "Sort by total yards", @sort_params %></th>
       <th scope="col">Avg</th>
       <th scope="col">Yds/G</th>
-      <th scope="col">TD</th>
-      <th scope="col">Lng</th>
+      <th scope="col"><%= sort_link @conn, "TD", :touchdowns, "Sort by touchdowns", @sort_params %></th>
+      <th scope="col"><%= sort_link @conn,  "Lng",:longest, "Sort by longest rush", @sort_params %></th>
       <th scope="col">1st</th>
       <th scope="col">1st%</th>
       <th scope="col">20+</th>

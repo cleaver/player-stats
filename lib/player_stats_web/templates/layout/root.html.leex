@@ -8,10 +8,22 @@
     <%= live_title_tag assigns[:page_title] || "PlayerStats" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+      // dark mode
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
   <body class="app-body">
     <header>
-      <section class="container">
+      <section class="container mx-auto>
         <nav role="navigation">
           <ul>
             <%# navigation here %>

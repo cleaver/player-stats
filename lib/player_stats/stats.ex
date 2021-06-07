@@ -22,6 +22,34 @@ defmodule PlayerStats.Stats do
   end
 
   @doc """
+  Returns a sorted list of rushing_stats.
+
+  ## Examples
+
+  iex> list_rushing_stats_sorted({:asc, :player}, "joe")
+  [%RushingStats{}, ...]
+
+  """
+  @spec list_rushing_stats_sorted(sort_params :: tuple(), name :: String.t()) :: any
+  def list_rushing_stats_sorted(sort_params, name \\ "joe") do
+    name_filter =
+      if String.length(name) do
+        dynamic([r], ilike(r.player, ^"%#{name}%"))
+      else
+        true
+      end
+
+    order = [sort_params]
+
+    query =
+      RushingStats
+      |> where(^name_filter)
+      |> order_by(^order)
+
+    Repo.all(query)
+  end
+
+  @doc """
   Gets a single rushing_stats.
 
   Raises `Ecto.NoResultsError` if the Rushing stats does not exist.
