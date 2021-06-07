@@ -31,7 +31,7 @@ defmodule PlayerStats.Stats do
 
   """
   @spec list_rushing_stats_sorted(sort_params :: tuple(), name :: String.t()) :: any
-  def list_rushing_stats_sorted(sort_params, name \\ "joe") do
+  def list_rushing_stats_sorted(sort_params, name \\ "") do
     name_filter =
       if String.length(name) do
         dynamic([r], ilike(r.player, ^"%#{name}%"))
@@ -39,7 +39,7 @@ defmodule PlayerStats.Stats do
         true
       end
 
-    order = [sort_params]
+    order = if sort_params, do: [sort_params], else: []
 
     query =
       RushingStats

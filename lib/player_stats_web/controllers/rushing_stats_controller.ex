@@ -12,19 +12,21 @@ defmodule PlayerStatsWeb.RushingStatsController do
   @safe_params ["sort", "filter", "page"]
 
   def index(conn, params) do
+    params = Map.take(params, @safe_params)
     sort_params = parse_sort(params)
 
-    rushing_stats =
-      if sort_params do
-        Stats.list_rushing_stats_sorted(sort_params)
-      else
-        Stats.list_rushing_stats()
+    filter =
+      case params do
+        %{"filter" => filter} -> filter
+        _ -> ""
       end
+
+    rushing_stats = Stats.list_rushing_stats_sorted(sort_params, filter)
 
     render(conn, "index.html",
       rushing_stats: rushing_stats,
       sort_params: sort_params,
-      params: Map.take(params, @safe_params)
+      params: params
     )
   end
 

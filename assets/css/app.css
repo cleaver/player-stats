@@ -3,12 +3,27 @@
 @tailwind components;
 @tailwind utilities;
 
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-2xl;
+}
 .app-body {
   @apply bg-white text-gray-800 dark:bg-gray-700 dark:text-gray-100;
 }
 
+.app-container {
+  @apply container mx-auto px-10;
+}
+
 .app-table {
-  @apply m-5 w-5/6 mx-auto bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200;
+  @apply m-5 w-full mx-auto bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200;
   th,
   td {
     @apply px-4 py-3;
