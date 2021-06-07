@@ -66,3 +66,11 @@ h3 {
 .app-pager__link--disabled {
   @apply bg-gray-100 text-gray-700 rounded border border-gray-300 p-3 hover:text-gray-400 hover:border-gray-300;
 }
+
+/* Download */
+.app-download {
+  @apply float-right mr-8;
+  a {
+    @apply hover:underline;
+  }
+}

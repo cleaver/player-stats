@@ -8,6 +8,7 @@
   class: "app-search__submit" %>
 <% end %>
 <%= page_number(@params, @page_count) %>
+<span class="app-download"><%= link "Download all (CSV)", to: Routes.rushing_stats_path(@conn, :export, @params) %></span>
 <table class="app-table">
   <thead class="app-table__head">
     <tr>
