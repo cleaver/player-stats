@@ -31,7 +31,7 @@ defmodule PlayerStats.Stats do
 
   """
   @spec list_rushing_stats_sorted(sort_params :: tuple(), name :: String.t()) :: any
-  def list_rushing_stats_sorted(sort_params, name \\ "") do
+  def list_rushing_stats_sorted(sort_params, name \\ "", limit \\ 30, offset \\ 0) do
     name_filter =
       if String.length(name) do
         dynamic([r], ilike(r.player, ^"%#{name}%"))
@@ -41,12 +41,23 @@ defmodule PlayerStats.Stats do
 
     order = if sort_params, do: [sort_params], else: []
 
-    query =
+    row_count =
+      RushingStats
+      |> where(^name_filter)
+      |> select([r], count(r.id))
+      |> Repo.one()
+
+    page_count = ceil(row_count / limit)
+
+    results =
       RushingStats
       |> where(^name_filter)
       |> order_by(^order)
+      |> limit(^limit)
+      |> offset(^offset)
+      |> Repo.all()
 
-    Repo.all(query)
+    [page_count, results]
   end
 
   @doc """

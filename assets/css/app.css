@@ -21,7 +21,7 @@ h3 {
 }
 
 .app-container {
-  @apply container mx-auto px-10;
+  @apply container mx-auto px-2 xl:px-10 my-6;
 }
 
 /* Table */
@@ -46,9 +46,23 @@ h3 {
 
 /* Search box */
 .app-search__input {
-  @apply rounded-l p-1 border-t mr-0 border-b border-l text-gray-800 border-gray-900 bg-white;
+  @apply rounded-l p-1 border-t mr-0 border-b border-l text-gray-800 border-gray-600 dark:border-gray-900 bg-white;
 }
 
 .app-search__submit {
-  @apply px-8 py-1 rounded-r bg-gray-800  text-gray-100 font-bold uppercase border-gray-900 border-t border-b border-r;
+  @apply px-8 py-1 rounded-r bg-gray-300 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-bold uppercase border-gray-900 border-t border-b border-r;
+}
+
+/* Pager */
+
+.app-pager {
+  @apply py-8;
+}
+
+.app-pager__link {
+  @apply bg-gray-200 text-gray-900 rounded border border-gray-400 p-3 hover:underline;
+}
+
+.app-pager__link--disabled {
+  @apply bg-gray-100 text-gray-700 rounded border border-gray-300 p-3 hover:text-gray-400 hover:border-gray-300;
 }

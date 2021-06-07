@@ -8,13 +8,51 @@ defmodule PlayerStatsWeb.RushingStatsView do
   TODO: move sanitized `sort_params` back into `params` to save a function argument.
   """
   def sort_link(conn, text, column, title, params, sort_params \\ {}) do
-    query_string = Map.merge(params, %{"sort" => "asc:" <> Atom.to_string(column)})
+    query_string =
+      params |> Map.take(["filter"]) |> Map.merge(%{"sort" => "asc:" <> Atom.to_string(column)})
 
     link(text <> sort_symbol(column, sort_params),
       to: Routes.rushing_stats_path(conn, :index, query_string),
       title: title,
       class: nil
     )
+  end
+
+  def page_number(params, page_count) do
+    page = parse_page(params)
+    ~E(<span class="float-right">Page <%= page %> of <%= page_count %></span>)
+  end
+
+  def page_next(conn, text, params, page_count) do
+    page = parse_page(params)
+
+    if page < page_count do
+      query_string = Map.merge(params, %{"page" => page + 1})
+
+      link(text,
+        to: Routes.rushing_stats_path(conn, :index, query_string),
+        title: "Next page",
+        class: "app-pager__link"
+      )
+    else
+      ~E(<span class="app-pager__link--disabled"><%= text %></span>)
+    end
+  end
+
+  def page_prev(conn, text, params, page_count) do
+    page = parse_page(params)
+
+    if page > 1 do
+      query_string = Map.merge(params, %{"page" => page - 1})
+
+      link(text,
+        to: Routes.rushing_stats_path(conn, :index, query_string),
+        title: "Previous page",
+        class: "app-pager__link"
+      )
+    else
+      ~E(<span class="app-pager__link--disabled"><%= text %></span>)
+    end
   end
 
   @doc """
@@ -32,6 +70,13 @@ defmodule PlayerStatsWeb.RushingStatsView do
 
       _ ->
         ""
+    end
+  end
+
+  defp parse_page(params) do
+    case params do
+      %{"page" => page} -> String.to_integer(page)
+      _ -> 1
     end
   end
 end

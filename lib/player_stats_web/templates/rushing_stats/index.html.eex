@@ -1,12 +1,13 @@
 <h1>Listing Rushing stats</h1>
 
-<%= form_for @conn, Routes.rushing_stats_path(@conn, :index), [method: :get], fn f -> %>
+<%= form_for @conn, Routes.rushing_stats_path(@conn, :index), [method: :get, class: "float-left mb-4"], fn f -> %>
   <%= label f, :filter, "Filter by player name:" %>
   <%= hidden_input f, :sort %>
   <%= search_input f, :filter,
   class: "app-search__input" %><%= submit "Filter",
   class: "app-search__submit" %>
 <% end %>
+<%= page_number(@params, @page_count) %>
 <table class="app-table">
   <thead class="app-table__head">
     <tr>
@@ -49,3 +50,7 @@
 <% end %>
   </tbody>
 </table>
+<div class="app-pager">
+  <div class="float-left"><%= page_prev @conn, "Previous page", @params, @page_count %></div>
+  <div class="float-right"><%= page_next @conn, "Next page", @params, @page_count %></div>
+</div>
