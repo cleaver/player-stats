@@ -9,8 +9,8 @@ To install the application:
 - Install dependencies with `mix deps.get`
 - Create and migrate your database with `mix ecto.setup`
 - Install Node.js dependencies with `npm install` inside the `assets` directory
-- Start Phoenix endpoint with `mix phx.server`
 - Load data with `mix load_rushing rushing.json`
+- Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
@@ -28,3 +28,10 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - Uses Tailwind CSS with PostCSS.
 - CSS will be huge in development.
 - Production build purges unused CSS.
+
+## Performance and scalability
+
+- Pagination avoids large data transfers.
+- Stateless design is easily cacheable by a reverse proxy.
+- Indices not yet added to database (TODO) -- would require benchmarks.
+- Moving to a single page Javascript application could make minor performance improvements -- less data on each request.
