@@ -25,6 +25,7 @@ jobs:
       - uses: actions/setup-elixir@v1
         with:
           otp-version: '22.2'
+          experimental-otp: true
           elixir-version: '1.9.4'
       - run: mix deps.get
       - run: mix test
