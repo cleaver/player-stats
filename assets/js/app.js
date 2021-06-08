@@ -37,3 +37,33 @@ liveSocket.connect();
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
+
+window.onload = () => {
+  // add dark link
+  const menu = document.querySelector('.app-main-nav');
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  let theme =
+    localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light');
+  menu.append(li);
+  li.append(a);
+  a.href = '#';
+  a.textContent = theme === 'dark' ? 'Light' : 'Dark';
+  a.title = 'Switch dark mode';
+  a.onclick = (e) => {
+    e.preventDefault();
+    theme = theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', theme);
+    const html = document.querySelector('html');
+    if (theme === 'dark') {
+      html.classList.add('dark');
+      a.textContent = 'Light';
+    } else {
+      html.classList.remove('dark');
+      a.textContent = 'Dark';
+    }
+  };
+};
