@@ -1,4 +1,4 @@
-<h1>Listing Rushing stats</h1>
+<h1>Rushing Stats</h1>
 
 <%= form_for @conn, Routes.rushing_stats_path(@conn, :index), [method: :get, class: "float-left mb-4"], fn f -> %>
   <%= label f, :filter, "Filter by player name:" %>
