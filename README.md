@@ -22,3 +22,9 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - Easily cacheable.
 - Javascript not required.
 - Accessible. Tested with [WAVE evaluation tool](https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh)
+
+## Notes
+
+- Uses Tailwind CSS with PostCSS.
+- CSS will be huge in development.
+- Production build purges unused CSS.
