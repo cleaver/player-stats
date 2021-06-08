@@ -24,6 +24,16 @@ h3 {
   @apply container mx-auto px-2 xl:px-10 my-6;
 }
 
+header nav {
+  @apply flex justify-items-end;
+}
+.app-main-nav {
+  @apply inline-flex flex-row list-none ml-auto;
+  a {
+    @apply px-3 py-2 flex items-center text-sm hover:underline;
+  }
+}
+
 /* Table */
 .app-table {
   @apply m-5 w-full mx-auto bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200;
