@@ -14,9 +14,8 @@ defmodule PlayerStatsWeb.RushingStatsController do
   @max_download_rows 9999
 
   @doc """
-  Respond to request for rushing stats list.
+  Respond to GET request for rushing stats list.
 
-  TODO:
   """
   def index(conn, params) do
     params = Map.take(params, @safe_params)
@@ -35,6 +34,10 @@ defmodule PlayerStatsWeb.RushingStatsController do
     )
   end
 
+  @doc """
+  Respond to GET requests for CSV export.
+
+  """
   def export(conn, params) do
     sort_params = parse_sort(params)
     filter = parse_filter(params)
@@ -52,15 +55,17 @@ defmodule PlayerStatsWeb.RushingStatsController do
     end
   end
 
-  def parse_sort(%{"sort" => sort_column}) do
+  ## Parse a sort parameter from query string.
+  defp parse_sort(%{"sort" => sort_column}) do
     sort_column
     |> String.split(":", parts: 2)
     |> valid_sort()
   end
 
-  def parse_sort(_), do: nil
+  defp parse_sort(_), do: nil
 
-  def valid_sort([direction, column]) do
+  ## Ensure sort parameters are valid.
+  defp valid_sort([direction, column]) do
     dir_atom = String.to_atom(direction)
     col_atom = String.to_atom(column)
 
@@ -70,15 +75,17 @@ defmodule PlayerStatsWeb.RushingStatsController do
     end
   end
 
-  def valid_sort(_), do: nil
+  defp valid_sort(_), do: nil
 
-  def parse_filter(%{"filter" => filter}), do: filter
-  def parse_filter(_), do: ""
+  ## Parse filter parameters.
+  defp parse_filter(%{"filter" => filter}), do: filter
+  defp parse_filter(_), do: ""
 
-  def parse_offset(%{"page" => "0"}, _), do: 0
+  ## Parse page offset parameters.
+  defp parse_offset(%{"page" => "0"}, _), do: 0
 
-  def parse_offset(%{"page" => page}, limit),
+  defp parse_offset(%{"page" => page}, limit),
     do: (Kernel.abs(String.to_integer(page)) - 1) * limit
 
-  def parse_offset(_, _), do: 0
+  defp parse_offset(_, _), do: 0
 end
