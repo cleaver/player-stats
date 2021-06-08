@@ -19,7 +19,6 @@ defmodule PlayerStatsWeb.Router do
 
     get "/rushing_stats", RushingStatsController, :index
     get "/rushing_stats/export", RushingStatsController, :export
-    get "/rushing_stats/:id", RushingStatsController, :show
 
     live "/", PageLive, :index
   end

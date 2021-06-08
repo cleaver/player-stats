@@ -2,6 +2,7 @@ defmodule PlayerStatsWeb.RushingStatsController do
   use PlayerStatsWeb, :controller
   require Decimal
   alias PlayerStats.Stats
+  alias PlayerStats.Util.CsvUtils
 
   @sort_cols [
     :longest,
@@ -45,56 +46,10 @@ defmodule PlayerStatsWeb.RushingStatsController do
       conn
       |> put_resp_content_type("text/csv")
       |> put_resp_header("content-disposition", "attachment; filename=\"rushing_stats.csv\"")
-      |> send_resp(200, transform_csv(rushing_stats))
+      |> send_resp(200, CsvUtils.maplist_to_csv(rushing_stats))
     else
-      conn
-      |> put_resp_content_type("text/csv")
-      |> put_resp_header("content-disposition", "attachment; filename=\"rushing_stats.csv\"")
-      |> send_resp(404, "not found")
+      render(conn, :"404")
     end
-  end
-
-  def transform_csv(data) when is_list(data) do
-    header_row =
-      hd(data)
-      |> Map.drop([:__meta__, :__struct__, :id])
-      |> Map.keys()
-      |> Enum.map(fn key -> "\"#{to_string(key)}\"" end)
-      |> Enum.join(",")
-
-    body_rows =
-      data
-      |> Enum.map(fn key -> transform_row(key) end)
-
-    Enum.join([header_row | body_rows], "\n")
-  end
-
-  def transform_csv(_), do: ""
-
-  def transform_row(row) do
-    row
-    |> Map.drop([:__meta__, :__struct__, :id])
-    |> Map.values()
-    |> Enum.map(fn value -> transform_value(value) end)
-    |> Enum.join(",")
-  end
-
-  def transform_value(value) when is_integer(value), do: to_string(value)
-  def transform_value(true), do: "T"
-  def transform_value(false), do: ""
-  def transform_value(value) when is_binary(value), do: "\"#{value}\""
-
-  def transform_value(value) do
-    if Decimal.is_decimal(value) do
-      Decimal.to_string(value)
-    else
-      ""
-    end
-  end
-
-  def show(conn, %{"id" => id}) do
-    rushing_stats = Stats.get_rushing_stats!(id)
-    render(conn, "show.html", rushing_stats: rushing_stats)
   end
 
   def parse_sort(%{"sort" => sort_column}) do

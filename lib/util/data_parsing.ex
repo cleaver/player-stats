@@ -7,6 +7,8 @@ defmodule PlayerStats.Util.DataParsing do
   @doc """
   Parse a integer that may be in string form.
 
+  ## Examples
+
   iex> PlayerStats.Util.DataParsing.safe_int(123)
   123
 
