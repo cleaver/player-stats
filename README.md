@@ -1,5 +1,7 @@
 # PlayerStats
 
+[![Tests](https://github.com/cleaver/player-stats/actions/workflows/ex-tests.yaml/badge.svg)](https://github.com/cleaver/player-stats/actions/workflows/ex-tests.yaml)
+
 List, filter and sort NFL Rushing data. Developed as a programming exercise with a minimum of a added components.
 
 ## Installation
