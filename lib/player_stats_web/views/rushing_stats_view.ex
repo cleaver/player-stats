@@ -31,7 +31,6 @@ defmodule PlayerStatsWeb.RushingStatsView do
 
       link(text,
         to: Routes.rushing_stats_path(conn, :index, query_string),
-        title: "Next page",
         class: "app-pager__link"
       )
     else
@@ -39,7 +38,7 @@ defmodule PlayerStatsWeb.RushingStatsView do
     end
   end
 
-  def page_prev(conn, text, params, page_count) do
+  def page_prev(conn, text, params) do
     page = parse_page(params)
 
     if page > 1 do
@@ -47,7 +46,6 @@ defmodule PlayerStatsWeb.RushingStatsView do
 
       link(text,
         to: Routes.rushing_stats_path(conn, :index, query_string),
-        title: "Previous page",
         class: "app-pager__link"
       )
     else

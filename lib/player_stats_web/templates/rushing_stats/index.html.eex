@@ -52,6 +52,6 @@
   </tbody>
 </table>
 <div class="app-pager">
-  <div class="float-left"><%= page_prev @conn, "Previous page", @params, @page_count %></div>
+  <div class="float-left"><%= page_prev @conn, "Previous page", @params %></div>
   <div class="float-right"><%= page_next @conn, "Next page", @params, @page_count %></div>
 </div>
